@@ -6,10 +6,29 @@
     <meta property="fc:frame" content="vNext">
     <meta property="fc:frame:image" content="https://image.blockbeats.cn/file_v6/20240529/f5220508-a15a-45fd-8911-7bd378134df0.png">
     <meta property="fc:frame:post_url" content="https://frame.example.com/start">
-    <meta property="fc:frame:button:1" content='start'>
+    <meta property="fc:frame:button:1" content='{"text": "Search", "action": "javascript:performSearch()"}'>
     <title>BlockBeats Frame</title>
+    <script>
+        function performSearch() {
+            const query = document.getElementById('search-input').value;
+            const apiUrl = `https://www.theblockbeats.info/search?msg=${encodeURIComponent(query)}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Search results:', data);
+                    // Here you can update the UI with the search results
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
 </head>
 <body>
-test 123
+<h1>Welcome to BlockBeats</h1>
+<p>This is a simple example of a Farcaster frame with a search feature.</p>
+<input type="text" id="search-input" placeholder="Enter search query">
+<button onclick="performSearch()">Search</button>
 </body>
 </html>
