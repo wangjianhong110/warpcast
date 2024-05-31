@@ -5,12 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="fc:frame" content="vNext">
     <meta property="fc:frame:image" content="https://image.blockbeats.cn/file_v6/20240529/f5220508-a15a-45fd-8911-7bd378134df0.png">
-    <meta name="fc:frame:button:1" content="点击搜索btc" />
-    <meta name="fc:frame:button:1:action" content="post" />
-    <meta name="fc:frame:button:1::post_url" content="https://www.theblockbeats.info/search?msg=btc" />
+    <meta name="fc:frame:input:1" content="searchInput" />
+    <meta name="fc:frame:button:1" content="点击搜索" />
+    <meta name="fc:frame:button:1:type" content="button" />
+    <meta name="fc:frame:button:1:action" content="search" />
     <title>BlockBeats Frame</title>
+    <script>
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
+            const searchUrl = `https://www.theblockbeats.info/search?msg=${encodeURIComponent(query)}`;
+            fetch(searchUrl)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('searchResults').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('searchResults').innerHTML = 'An error occurred while searching.';
+                });
+        }
+    </script>
 </head>
 <body>
 <h1>Welcome to BlockBeats</h1>
+<div>
+    <input type="text" id="searchInput" placeholder="Enter search term">
+    <button type="button" onclick="performSearch()">点击搜索</button>
+</div>
+<div id="searchResults"></div>
 </body>
 </html>
