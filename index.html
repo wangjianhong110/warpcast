@@ -1,19 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <title>wiggle</title>
-    <meta property="og:title" content="wiggle"/>
-    <title>Frame 1</title>
-
-    <meta property="fc:frame" content="vNext">
-    <meta property="fc:frame:image" content="https://i.imgur.com/ySQ084f.jpg">
-    <meta property="og:image" content="https://i.imgur.com/ySQ084f.jpg">
-    <meta property="fc:frame:post_url" content="https://farcaster-frames-five.vercel.app/req/frameserver.js">
-    <meta property="fc:frame:button:1" content="wiggle me">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #meme { max-width: 100%; }
+    </style>
+    <!-- Add meta tags for image URL -->
+    <meta property="og:image" content="https://aquamarine-elegant-meerkat-268.mypinata.cloud/ipfs/Qmdo6eeTUfnGE39ofKNAtaKnkKyZbromBKPAVKm5qXbPhY">
 </head>
 <body>
-~~ wiggle ~~
+<h1>妈的，我服了</h1>
+<input type="text" id="topText" placeholder="Top Text"><br><br>
+<input type="text" id="bottomText" placeholder="Bottom Text"><br><br>
+<button onclick="generateMeme()">Generate Meme</button>
+<br><br>
+<img id="meme" src="" alt="Your Meme">
+<script>
+    function generateMeme() {
+        const topText = document.getElementById('topText').value;
+        const bottomText = document.getElementById('bottomText').value;
+        const memeUrl = `https://api.memegen.link/images/custom/${topText}/${bottomText}.png`;
+        document.getElementById('meme').src = memeUrl;
+    }
+</script>
 </body>
 </html>
